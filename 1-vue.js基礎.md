@@ -40,3 +40,55 @@ Vue使用了與 Jinja2相似的方式，都使用雙大括號{{}}來表示數據
 在這個例子中，input裡的值會與Vue實例的message數據保持同步。
 代表無論在input輸入什麼，Vue實例的message數據都會被更新。
 而如果在程式碼中修改了Vue實例的message數據，input也會跟著更新。
+
+### v-on(監聽事件)
+`v-on`指令可以監聽DOM元素的事件。
+簡寫為`@`。
+以下兩種寫法屬於相同功能
+```
+v-on:click="handler"
+@click="handler"
+```
+事件處理器(handler)的值可以分為兩種：
+- 內聯事件處理器：事件被觸發時執行的內聯 Js 語法(與 `onclick` 類似)。
+- 方法事件處理器：指向組件上定義的方法的屬性名或路徑。
+
+#### 內聯事件處理器
+通常用於簡單場景，基本加減乘除等等。
+```js
+data(){
+    return{
+        count: 0
+    }    
+}
+```
+
+```template
+<button @click="count++">Add 1</button>
+<p>Count is: {{ count }}</p>
+```
+
+#### 方法事件處理器
+通常用於更複雜的場景，例如需要傳遞參數。因此`v-on`也可以接受一個方法名或對某個方法的調用。
+```js
+data(){
+    return{
+        name: 'Vue.js'
+    }
+},
+methods: {
+    greet(event){
+    // 方法中的 this 指向 Vue 實例的 name
+    alert(`Hello ${this.name}!`)
+    // event 是原生 DOM 事件
+    if(event){
+        alert(event.target.tagName)
+    }
+  }
+}
+```
+
+```template
+<!-- greet 是上面定義過的方法名 -->
+<button @click="greet">Greet</button>
+```
