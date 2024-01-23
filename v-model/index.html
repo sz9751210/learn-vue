@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue v-model 範例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="message" placeholder="輸入一些文字">
+        <p>輸入的訊息是: {{ message }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: ''
+            }
+        });
+    </script>
+</body>
+</html>

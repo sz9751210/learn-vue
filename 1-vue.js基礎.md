@@ -25,17 +25,18 @@ Vue使用了與 Jinja2相似的方式，都使用雙大括號{{}}來表示數據
 `{{message}}`將會被替換成message的值。
 
 ## Vue關鍵指令
-### v-bind指令
+### v-bind指令(單向綁定)
 `v-bind`指令可以將數據綁定到DOM元素上。例如`v-bind:src`可以將圖片的源文件綁定到img元素上。
 ```
 <img v-bind:src="imageSrc">
 ```
 這裡`imageSrc`是Vue實例中一個數據屬性，當數據改變時，`img`元素的src屬性也會跟著改變。
 
-### v-model指令
+### v-model指令(雙向綁定)
 `v-model`指令創建了一個雙向綁定在表單輸入和Vue實例的數據上。例如，當使用者在輸入框輸入時，數據也會跟著改變。
 ```
 <input v-model="message">
 ```
 在這個例子中，input裡的值會與Vue實例的message數據保持同步。
 代表無論在input輸入什麼，Vue實例的message數據都會被更新。
+而如果在程式碼中修改了Vue實例的message數據，input也會跟著更新。
