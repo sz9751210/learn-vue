@@ -1,55 +1,36 @@
 <template>
-<div id="app">
+  <div id="app">
     <h1>ToDo</h1>
-      <!-- v-model裡的newTodo與data裡的newTodo是一樣的 -->
-      <el-input style="width: 50%;" maxlength="10" show-word-limit type="text" v-model="newTodo" @keyup.enter="addTodo">
-        <template #prepend>Todo</template>
-      </el-input>
+    <!-- 監聽add-todo是否被觸發, 如果被觸發執行當前的addTodo方法 -->
+    <AddTodo @add-todo="addTodo" />
 
-    <el-button type="primary" @click="addTodo" plain>添加</el-button>
-    <ul>
-        <li v-for="(todo, index) in todos" :key="index">
-            {{ todo }}
-            <el-button type="info" @click="removeTodo(index)">刪除</el-button>
-        </li>
-    </ul>
-</div>
-
+    <ListTodo :todos="todos" @remove-todo="removeTodo" />
+  </div>
 </template>
-
 <script>
-import { ElButton } from 'element-plus'
+import AddTodo from "./components/AddTodo.vue";
+import ListTodo from "./components/ListTodo.vue";
 export default {
   components: {
-    ElButton
+    AddTodo,
+    ListTodo,
   },
-    // 通常 data裡面都是放初始值
-    // 從 data 到 <input>：當 data 函數中的 newTodo 屬性的值變化時，這個變化會反映到綁定了 v-model 的 <input> 元素中，即 newTodo 的值會自動顯示在輸入框中。
-    // 從 <input> 到 data：當用戶在輸入框中輸入文字時，<input> 元素的值將會更新 newTodo 屬性的值。這意味著您可以在 Vue 實例的其他部分（例如在 methods 中）訪問和使用這個最新的值。
-    data() {
-        return {
-            newTodo: '',
-            todos: [
-                // {text: '吃飯', done: false},
-                // {text: '睡覺', done: false},
-        ]
-        }
+  // 通常 data裡面都是放初始值
+  // 從 data 到 <input>：當 data 函數中的 newTodo 屬性的值變化時，這個變化會反映到綁定了 v-model 的 <input> 元素中，即 newTodo 的值會自動顯示在輸入框中。
+  // 從 <input> 到 data：當用戶在輸入框中輸入文字時，<input> 元素的值將會更新 newTodo 屬性的值。這意味著您可以在 Vue 實例的其他部分（例如在 methods 中）訪問和使用這個最新的值。
+  data() {
+    return {
+      todos: ["吃飯", "睡覺"],
+    };
+  },
+  methods: {
+    addTodo(newTodo) {
+      this.todos.push(newTodo);
     },
-    methods: {
-        addTodo() {
-            // 獲取 newTodo 屬性的值，並移除其兩端的任何空白字符，這樣就可以確保添加到待辦事項列表中的內容不會以不必要的空格開始或結束。
-            // 假如移除空格後還有值
-            if(this.newTodo.trim()){
-                // 將項目放到todos
-                this.todos.push(this.newTodo.trim())
-                // 清空 newTodo 屬性的值
-                this.newTodo = ''
-            }
-        },
-        removeTodo(index) {
-            this.todos.splice(index, 1)
-        }
-    }
+    removeTodo(index) {
+      this.todos.splice(index, 1);
+    },
+  },
 };
 </script>
 
