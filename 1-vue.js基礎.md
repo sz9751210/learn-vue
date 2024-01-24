@@ -115,8 +115,6 @@ methods: {
 
 #### 發射事件詳細過程
 
-當然，我將為您提供相關的代碼範例，以幫助您更好地理解這一過程。
-
 首先，我們有一個 `ListTodo` 組件，它包含一個列表和刪除按鈕：
 
 ```vue
@@ -178,8 +176,6 @@ export default {
 ```
 
 在 `App.vue` 中，我們將 `todos` 數組作為 prop 傳遞給 `ListTodo` 組件。此外，我們還使用 `@remove-todo` 監聽從 `ListTodo` 發射的 `remove-todo` 事件。當該事件發生時，會調用 `removeTodo` 方法來刪除對應索引的待辦事項。
-
-您對於在 Vue.js 中這種父子組件間事件通信的流程的理解是完全正確的。讓我來為您進一步確認這個過程：
 
 1. **在 `ListTodo` 組件的 `template` 中按下刪除按鈕**：
    - 當您在 `ListTodo` 組件的 `template` 中點擊刪除按鈕時，會觸發 `emitRemoveTodo` 方法。
