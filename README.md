@@ -5,3 +5,4 @@
 
 ## 2. 語法糖
 - [v-on](doc/v-on.md)
+- [v-bind](doc/v-bind.md)
